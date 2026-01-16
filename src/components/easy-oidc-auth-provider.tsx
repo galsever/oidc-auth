@@ -5,7 +5,7 @@ export type EasyOidcAuthProviderProps = {
     children: React.ReactNode;
 } & AuthProviderProps
 
-export default function EasyOidcAuthProvider({children, ...props} : EasyOidcAuthProviderProps) {
+export function EasyOidcAuthProvider({children, ...props} : EasyOidcAuthProviderProps) {
     return (
         <OidcAuthProvider {...props}>
             {children}
