@@ -1,4 +1,11 @@
 # oidc-auth
+For React + Vite
+
+## Dependencies
+- react
+- axios
+- react-oidc-context
+- oidc-client-ts
 
 To install:
 
@@ -21,4 +28,17 @@ const oidcConfig = {
         window.location.replace("/");
     }
 };
-``
+```
+
+Then inside main.tsx add the EasyOidcAuthProvider and the AxiosProvider
+```ts
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+      <AxiosProvider>
+          <EasyOidcAuthProvider>
+              <App />
+          </EasyOidcAuthProvider>
+      </AxiosProvider>
+  </StrictMode>,
+)
+```
