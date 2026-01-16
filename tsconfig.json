@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    // Output Configuration
+    "outDir": "./dist",         // Creates the dist folder
+    "noEmit": false,            // ALLOWS creating files (Crucial!)
+    "declaration": true,        // Generates .d.ts files for users
+
+    // Module Compatibility
+    "module": "commonjs",       // Standard for npm compatibility
+    "target": "es2019",         // Compatible with most Node versions
+    "moduleResolution": "node", // Standard resolution
+    "esModuleInterop": true,
+
+    // React Support
+    "jsx": "react-jsx",
+
+    // Safety
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "include": ["index.ts", "src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
