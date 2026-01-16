@@ -1,15 +1,24 @@
 # oidc-auth
 
-To install dependencies:
+To install:
 
 ```bash
-bun install
+bun install @gal_sever/oidc-auth
 ```
 
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.3.6. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
+Create a OIDC Provider Config:
+```ts
+const oidcConfig = {
+    authority: "authority",
+    client_id: "clientid",
+    redirect_uri: "redirect url", // has to match the one in the oidc provider
+    response_type: "code",
+    scope: "openid profile email offline_access",
+    userStore: new WebStorageStateStore({ store: window.localStorage }),
+    automaticSilentRenew: true,
+    onSigninCallback: () => {
+        window.history.replaceState({}, document.title, window.location.pathname);
+        window.location.replace("/");
+    }
+};
+``
