@@ -2,7 +2,7 @@
   "name": "@gal_sever/oidc-auth",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "version": "1.0.3",
+  "version": "1.0.8",
   "files": [
     "dist"
   ],

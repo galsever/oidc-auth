@@ -1,9 +1,13 @@
 import axios from 'axios';
 import type {AxiosInstance} from "axios";
 
-export const api: AxiosInstance = axios.create({
-    baseURL: process.env.BACKEND_URL!,
-    headers: {
-        "Content-Type": "application/json",
-    }
-})
+export let api: AxiosInstance;
+
+export function initApi(backendUrl: string) {
+    api = axios.create({
+        baseURL: backendUrl,
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+}

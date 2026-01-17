@@ -11,8 +11,8 @@ export const AxiosProvider = ({ children }: { children: React.ReactNode }) => {
     useEffect(() => {
         const interceptor = api.interceptors.request.use(
             (config) => {
-                if (auth.user?.access_token) {
-                    config.headers['Authorization'] = `Bearer ${auth.user.access_token}`;
+                if (auth.user?.id_token) {
+                    config.headers['Authorization'] = `Bearer ${auth.user.id_token}`;
                 }
                 return config;
             },

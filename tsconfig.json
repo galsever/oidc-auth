@@ -6,9 +6,9 @@
     "declaration": true,        // Generates .d.ts files for users
 
     // Module Compatibility
-    "module": "commonjs",       // Standard for npm compatibility
+    "module": "esnext",       // Standard for npm compatibility
     "target": "es2019",         // Compatible with most Node versions
-    "moduleResolution": "node", // Standard resolution
+    "moduleResolution": "bundler", // Standard resolution
     "esModuleInterop": true,
 
     // React Support
