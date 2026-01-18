@@ -1,18 +1,26 @@
-import React, { createContext, useContext, useEffect, useMemo } from 'react';
-import Axios, { AxiosInstance } from 'axios';
+import React, { createContext, useContext, useEffect, useRef } from 'react';
+import { AxiosInstance } from 'axios';
 import { useAuth } from "react-oidc-context";
-import {api} from "../api/api";
+import { api } from "../api/api";
 
 const AxiosContext = createContext<AxiosInstance | null>(null);
 
 export const AxiosProvider = ({ children }: { children: React.ReactNode }) => {
     const auth = useAuth();
 
+    const tokenRef = useRef<string | undefined>(undefined);
+
+    useEffect(() => {
+        tokenRef.current = auth.user?.id_token;
+    }, [auth.user]);
+
     useEffect(() => {
         const interceptor = api.interceptors.request.use(
             (config) => {
-                if (auth.user?.id_token) {
-                    config.headers['Authorization'] = `Bearer ${auth.user.id_token}`;
+                const token = tokenRef.current;
+
+                if (token) {
+                    config.headers['Authorization'] = `Bearer ${token}`;
                 }
                 return config;
             },
@@ -22,7 +30,7 @@ export const AxiosProvider = ({ children }: { children: React.ReactNode }) => {
         return () => {
             api.interceptors.request.eject(interceptor);
         };
-    }, [auth.user, api]);
+    }, []);
 
     return (
         <AxiosContext.Provider value={api}>
