@@ -11,7 +11,7 @@ export const AxiosProvider = ({ children }: { children: React.ReactNode }) => {
     const tokenRef = useRef<string | undefined>(undefined);
 
     useEffect(() => {
-        tokenRef.current = auth.user?.id_token;
+        tokenRef.current = auth.user?.access_token;
     }, [auth.user]);
 
     useEffect(() => {
